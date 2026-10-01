@@ -33,12 +33,22 @@ $rota_url = "https://www.google.com/maps/dir/?api=1&destination=" . $ponto['lati
 <body>
 
     <header class="navbar">
-        <div class="logo">
-            <h1>Alto<span>Turistc</span></h1>
-        </div>
-        <nav>
-            <a href="index.php">← Voltar ao Início</a>
-        </nav>
+    <div class="logo">
+        <h1>Alto<span>Turistc</span></h1>
+    </div>
+    <nav>
+        <a href="index.php">Início</a>
+        <a href="cadastro.php" class="btn-nav-menu">Cadastrar</a>
+        <a href="index.php#mapa">Mapa</a>
+        <a href="index.php#locais">Pontos Turísticos</a>
+
+        <?php if (isset($_SESSION['usuario_id'])): ?>
+            <span class="user-greeting">Olá, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
+            <a href="logout.php" class="btn-logout">Sair</a>
+        <?php else: ?>
+            <a href="login.php" class="btn-login-menu">Entrar</a>
+        <?php endif; ?>
+    </nav>
     </header>
 
     <main class="container detalhes-container">

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "conexao.php";
 
 // Filtros de busca
@@ -30,14 +31,22 @@ $pontos = $stmt->fetchAll();
 <body>
 
     <header class="navbar">
-        <div class="logo">
-            <h1>Alto<span>Turistc</span></h1>
-        </div>
-        <nav>
-            <a href="index.php">Início</a>
-            <a href="#mapa">Mapa</a>
-            <a href="#locais">Pontos Turísticos</a>
-        </nav>
+    <div class="logo">
+        <h1>Alto<span>Turistc</span></h1>
+    </div>
+    <nav>
+        <a href="index.php">Início</a>
+        <a href="cadastro.php" class="btn-nav-menu">Cadastrar</a>
+        <a href="index.php#mapa">Mapa</a>
+        <a href="index.php#locais">Pontos Turísticos</a>
+
+        <?php if (isset($_SESSION['usuario_id'])): ?>
+            <span class="user-greeting">Olá, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
+            <a href="logout.php" class="btn-logout">Sair</a>
+        <?php else: ?>
+            <a href="login.php" class="btn-login-menu">Entrar</a>
+        <?php endif; ?>
+    </nav>
     </header>
 
     <section class="hero">
